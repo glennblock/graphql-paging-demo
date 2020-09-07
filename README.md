@@ -2,7 +2,7 @@
 This demo illustates how to implement the [GraphQL Cursor Connections](https://relay.dev/graphql/connections.htm) specification in your Apollo GraphQL endpoint in order to support paging.
 
 # Disclaimer
-This is purely for educational purposes. The app is not secure, the data store is in memory, and the approach used here won't scale. The concepts here can easily be adapted to a real world system. 
+This is purely for educational purposes. The app is not secure, the data store is in memory, and the approach used here won't scale. The recommended practice is to encode cursors in Base64, but for simplicity they are unencoded. The concepts here can easily be adapted to a real world system. 
 
 # Installing
 - Clone the repo. 
