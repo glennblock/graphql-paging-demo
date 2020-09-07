@@ -71,7 +71,7 @@ To get the next page of results, pass the `endCursor` value `{\"value\":\"Git Po
 ![query_2](https://user-images.githubusercontent.com/141124/92407796-78ef7e00-f0f0-11ea-8792-2e6bd05218ea.png)
 
 ## Query 3 - Getting the previous page
-To go back a page, pass the 'startCursor` value `{\"value\":\"Learning JavaScript Design Patterns\"}` as the `before` param in the query, then set `last` to 3
+To go back a page, pass the `startCursor` value `{\"value\":\"Learning JavaScript Design Patterns\"}` as the `before` param in the query, then set `last` to 3
 ```
 {
   books( 
