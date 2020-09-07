@@ -1,12 +1,12 @@
-// implements the relay curosr connection specification
+// implements the relay cursor connection specification
 // https://relay.dev/graphql/connections.htm
 
 module.exports = {
   getPageResult: getPageResult 
 }
 
-function getPageResult(edges, before, after, first, last, orderByField) {
-  var edgesCursorsApplied = applyCursorsToEdges(edges, before, after, orderByField);
+function getPageResult(edges, before, after, first, last, orderByField, sort) {
+  var edgesCursorsApplied = applyCursorsToEdges(edges, before, after, orderByField, sort);
   edges = edgesToReturn(edgesCursorsApplied, before, after, first, last, orderByField);
 
   const result = edges.map((book, index) => {
@@ -52,13 +52,25 @@ function edgesToReturn(edges, before, after, first, last) {
   return edges;
 }
 
-function applyCursorsToEdges(allEdges, before, after, orderByField) {
+function applyCursorsToEdges(allEdges, before, after, orderByField, sort) {
   var edges = allEdges;
   if (after != undefined) {
-    edges = allEdges.filter(book=>(book[orderByField] > after));
+    if (sort === "ASCENDING") {
+      edges = allEdges.filter(book=>(book[orderByField] > after));
+    }
+    else {
+      // if we are sorting descending need to reverse the comparison
+      edges = allEdges.filter(book=>(book[orderByField] < after));
+    }
   }
   else if (before != undefined) {
-    edges = allEdges.filter(book=>(book[orderByField] < before));
+    if (sort === "ASCENDING") { 
+      edges = allEdges.filter(book=>(book[orderByField] < before));
+    }
+    else {
+      // if we are sorting descending need to reverse the comparison
+      edges = allEdges.filter(book=>(book[orderByField] > before));
+    }
   }
   return edges;
 }

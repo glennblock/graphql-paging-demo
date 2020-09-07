@@ -53,7 +53,7 @@ const resolvers = {
         orderByField = "title";      
       }
 
-      return getPageResult(list, before, after, first, last, orderByField);
+      return getPageResult(list, before, after, first, last, orderByField, sort);
     }
   },
 };
