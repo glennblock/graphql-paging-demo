@@ -2,7 +2,7 @@
 This demo illustates how to implement the [GraphQL Cursor Connections](https://relay.dev/graphql/connections.htm) specification in your Apollo GraphQL endpoint in order to support paging.
 
 # Disclaimer
-This is purely for educational purposes. The app is not secure, the data store is in memory, and the approach used here won't scale. The concepts here can easily be adapted to a real world system. 
+This is purely for educational purposes. The app is not secure, the data store is in memory, and the approach used here won't scale. The recommended practice is to encode cursors in Base64, but for simplicity they are unencoded. The concepts here can easily be adapted to a real world system. 
 
 # Installing
 - Clone the repo. 
@@ -71,7 +71,7 @@ To get the next page of results, pass the `endCursor` value `{\"value\":\"Git Po
 ![query_2](https://user-images.githubusercontent.com/141124/92407796-78ef7e00-f0f0-11ea-8792-2e6bd05218ea.png)
 
 ## Query 3 - Getting the previous page
-To go back a page, pass the 'startCursor` value `{\"value\":\"Learning JavaScript Design Patterns\"}` as the `before` param in the query, then set `last` to 3
+To go back a page, pass the `startCursor` value `{\"value\":\"Learning JavaScript Design Patterns\"}` as the `before` param in the query, then set `last` to 3
 ```
 {
   books( 
