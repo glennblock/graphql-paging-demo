@@ -10,7 +10,7 @@ This is purely for educational purposes. The app is not secure, the data store i
 
 # Running
 - `npm start`
-- After the server is running open "http://localhost:4000"
+- After the server is running open "http://localhost:5000"
 - The graphiql editor will open. 
 
 # Walkthrough

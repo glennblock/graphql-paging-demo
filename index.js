@@ -8,13 +8,9 @@ const typeDefs = gql `${schema}`;
 // From https://gist.githubusercontent.com/nanotaboada/6396437/raw/82dca67cc3b6a5ccfcf8af012664cdaa0025d999/books.json
 const books = JSON.parse(readFileSync('books.json')).books;
 
-const booksByTitle = [...books.sort((a,b)=> {
-  return a.title.localeCompare(b.title);
-})];
+const booksByTitle = [...books.sort((a,b)=> a.title.localeCompare(b.title))];
 
-const booksByAuthor = [...books.sort((a,b)=> {
-  return a.author.localeCompare(b.author);
-})];
+const booksByAuthor = [...books.sort((a,b)=> a.author.localeCompare(b.author))];
 
 var util = require('util');
 
@@ -63,7 +59,7 @@ const resolvers = {
 const server = new ApolloServer({ typeDefs, resolvers });
 
 // The `listen` method launches a web server.
-server.listen().then(({ url }) => {
+server.listen({port:5000}).then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
 
