@@ -29,35 +29,6 @@ function getPageResult(edges, before, after, first, last, orderByField, sort) {
   };
 }
 
-// Trim down to just pull the number of edges that were specified for last for first
-function edgesToReturn(edges, before, after, first, last) {
-  // If first was specified
-  if (first != undefined) 
-  {
-    if (first < 0) {
-      throw new Error("first cannot be less than 0");
-    }
-    
-    // If the length > first 
-    if (edges.length > first) {
-      // Slice out the first
-      edges = edges.slice(0, first);
-    }
-  } // If last was specified
-  else if (last != undefined) {
-    if (last < 0) {
-      throw new Error("last cannot be less than 0");
-    }
-
-    // If the length > last
-    if (edges.length > last) {
-      //  Slice out the last
-      edges = edges.slice(edges.length - last);
-    }
-  }
-  return edges;
-}
-
 // Filter results based on the cursor
 function applyCursorsToEdges(allEdges, before, after, orderByField, sort) {
   var edges = allEdges;
@@ -82,6 +53,35 @@ function applyCursorsToEdges(allEdges, before, after, orderByField, sort) {
     else {   
       // Find everything that is > the before cursor
       edges = allEdges.filter(book=>(book[orderByField] > before));
+    }
+  }
+  return edges;
+}
+
+// Trim down to just pull the number of edges that were specified for last for first
+function edgesToReturn(edges, before, after, first, last) {
+  // If first was specified
+  if (first != undefined) 
+  {
+    if (first < 0) {
+      throw new Error("first cannot be less than 0");
+    }
+    
+    // If the length > first 
+    if (edges.length > first) {
+      // Slice out the first
+      edges = edges.slice(0, first);
+    }
+  } // If last was specified
+  else if (last != undefined) {
+    if (last < 0) {
+      throw new Error("last cannot be less than 0");
+    }
+
+    // If the length > last
+    if (edges.length > last) {
+      //  Slice out the last
+      edges = edges.slice(edges.length - last);
     }
   }
   return edges;
